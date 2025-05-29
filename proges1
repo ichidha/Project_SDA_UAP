@@ -3,29 +3,29 @@ from PIL import Image, ImageTk
 
 root = tk.Tk()
 root.title("Welcome Page")
-root.geometry("800x600")
+root.geometry("1100x650")
 root.resizable(False, False)
 
 bg_image = Image.open("sunset_bg.png")
 bg_image = ImageTk.PhotoImage(bg_image)
 
 btn_image = Image.open("start_button.png")
-btn_image = btn_image.resize((150, 50), Image.Resampling.LANCZOS)
+btn_image = btn_image.resize((150, 35), Image.Resampling.LANCZOS)
 btn_photo = ImageTk.PhotoImage(btn_image)
 
-canvas = tk.Canvas(root, width=800, height=600)
+canvas = tk.Canvas(root, width=1100, height=650)
 canvas.pack(fill="both", expand=True)
 canvas.create_image(0, 0, image=bg_image, anchor="nw")
 
-canvas.create_text(400, 100, text="WELCOME",font=("Comic Sans MS", 50, "bold"), fill="orange")
-canvas.create_text(400, 150, text="TO OUR",font=("Comic Sans MS", 50, "bold"), fill="orange")
-canvas.create_text(400, 200, text="PROJECT",font=("Comic Sans MS", 50, "bold"), fill="orange")
+canvas.create_text(550, 100, text="WELCOME",font=("Comic Sans MS", 50, "bold"), fill="orange")
+canvas.create_text(550, 175, text="TO OUR",font=("Comic Sans MS", 50, "bold"), fill="orange")
+canvas.create_text(550, 250, text="PROJECT",font=("Comic Sans MS", 50, "bold"), fill="orange")
 
 def start():
     print("Mulai ke halaman berikutnya!")
 
 
 start_button = tk.Button(root, image=btn_photo, borderwidth=0, command=start, cursor="hand2")
-start_btn_window = canvas.create_window(400, 350, window=start_button)
+start_btn_window = canvas.create_window(550, 420, window=start_button)
 
 root.mainloop()
