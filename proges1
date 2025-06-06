@@ -87,6 +87,19 @@ canvas_AllName = tk.Canvas(frame_nama, width=1100, height=650)
 canvas_AllName.pack(fill="both", expand=True)
 canvas_AllName.create_image(0, 0, image=bgAllName_image, anchor="nw")
 
+#teks our team
+canvas_AllName.create_text(547, 104, text="OUR TEAM",font=("Forte", 68, "bold"), fill="white")
+canvas_AllName.create_text(548, 103, text="OUR TEAM",font=("Forte", 68, "bold"), fill="black")
+canvas_AllName.create_text(550, 100, text="OUR TEAM",font=("Forte", 68, "bold"), fill="orange")
+
+#button back ke menu dua
+btnback_image = Image.open("back_button.png")
+btnback_image = btnback_image.resize((131, 41), Image.Resampling.LANCZOS)
+btnback_photo = ImageTk.PhotoImage(btnback_image)
+
+back_button = tk.Button(frame_nama, image=btnback_photo, borderwidth=0, command=lambda: buka_halaman(frame_dua), cursor="hand2")
+canvas_AllName.create_window(895, 575, window=back_button)
+
 buka_halaman(frame_satu)
 
 root.mainloop()
