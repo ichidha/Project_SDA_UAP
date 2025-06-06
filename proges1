@@ -22,13 +22,14 @@ frame_profilvia = tk.Frame(root, width=1100, height=650)
 for frame in (frame_satu, frame_dua, frame_nama):
     frame.place(x=0, y=0, width=1100, height=650)
 
+#page awal
 bg_image = Image.open("sunset_bg.png")
 bg_image = ImageTk.PhotoImage(bg_image)
-
 canvas_satu = tk.Canvas(frame_satu, width=1100, height=650)
 canvas_satu.pack(fill="both", expand=True)
 canvas_satu.create_image(0, 0, image=bg_image, anchor="nw")
 
+#teks di page awal
 canvas_satu.create_text(547, 104, text="WELCOME",font=("Forte", 68, "bold"), fill="white")
 canvas_satu.create_text(548, 103, text="WELCOME",font=("Forte", 68, "bold"), fill="black")
 canvas_satu.create_text(550, 100, text="WELCOME",font=("Forte", 68, "bold"), fill="orange")
@@ -39,16 +40,16 @@ canvas_satu.create_text(547, 254, text="PROJECT",font=("Forte", 68, "bold"), fil
 canvas_satu.create_text(548, 253, text="PROJECT",font=("Forte", 68, "bold"), fill="black")
 canvas_satu.create_text(550, 250, text="PROJECT",font=("Forte", 68, "bold"), fill="orange")
 
+#start button
 btn_image = Image.open("start_button.png")
 btn_image = btn_image.resize((150, 35), Image.Resampling.LANCZOS)
 btn_photo = ImageTk.PhotoImage(btn_image)
-
 start_button = tk.Button(frame_satu, image=btn_photo, borderwidth=0, command=lambda: buka_halaman(frame_dua), cursor="hand2")
 canvas_satu.create_window(550, 420, window=start_button)
 
+#page 2
 bg2_image = Image.open("sunset_bg2.png")
 bg2_image = ImageTk.PhotoImage(bg2_image)
-
 canvas_dua = tk.Canvas(frame_dua, width=1100, height=650)
 canvas_dua.pack(fill="both", expand=True)
 canvas_dua.create_image(0, 0, image=bg2_image, anchor="nw")
@@ -57,10 +58,10 @@ canvas_dua.create_image(0, 0, image=bg2_image, anchor="nw")
 btn2_image = Image.open("project_button.png")
 btn2_image = btn2_image.resize((190, 55), Image.Resampling.LANCZOS)
 btn2_photo = ImageTk.PhotoImage(btn2_image)
-
 project_button = tk.Button(frame_dua, image=btn2_photo, borderwidth=0, command=lambda: buka_halaman(frame_project), cursor="hand2")
 canvas_dua.create_window(275, 325, window=project_button)
 
+#garis di page 2
 canvas_dua.create_text(275, 230, text="____",font=("Forte", 68, "bold"), fill="white")
 canvas_dua.create_text(275, 245, text="_____",font=("Forte", 68, "bold"), fill="white")
 canvas_dua.create_text(275, 340, text="____",font=("Forte", 68, "bold"), fill="white")
@@ -70,16 +71,16 @@ canvas_dua.create_text(275, 325, text="_____",font=("Forte", 68, "bold"), fill="
 btn3_image = Image.open("team_button.png")
 btn3_image = btn3_image.resize((190, 55), Image.Resampling.LANCZOS)
 btn3_photo = ImageTk.PhotoImage(btn3_image)
-
 project_button = tk.Button(frame_dua, image=btn3_photo, borderwidth=0, command=lambda: buka_halaman(frame_nama), cursor="hand2")
 canvas_dua.create_window(825, 325, window=project_button)
 
+#garis di page 2
 canvas_dua.create_text(825, 230, text="____",font=("Forte", 68, "bold"), fill="white")
 canvas_dua.create_text(825, 245, text="_____",font=("Forte", 68, "bold"), fill="white")
 canvas_dua.create_text(825, 340, text="____",font=("Forte", 68, "bold"), fill="white")
 canvas_dua.create_text(825, 325, text="_____",font=("Forte", 68, "bold"), fill="white")
 
-#frame isi team
+#page our team
 bgAllName_image = Image.open("sunset_bg2.png")
 bgAllName_image = ImageTk.PhotoImage(bgAllName_image)
 
@@ -96,7 +97,6 @@ canvas_AllName.create_text(550, 100, text="OUR TEAM",font=("Forte", 68, "bold"),
 btnback_image = Image.open("back_button.png")
 btnback_image = btnback_image.resize((131, 41), Image.Resampling.LANCZOS)
 btnback_photo = ImageTk.PhotoImage(btnback_image)
-
 back_button = tk.Button(frame_nama, image=btnback_photo, borderwidth=0, command=lambda: buka_halaman(frame_dua), cursor="hand2")
 canvas_AllName.create_window(895, 575, window=back_button)
 
