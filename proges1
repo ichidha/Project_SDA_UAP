@@ -155,6 +155,11 @@ bgprofilvia_image = ImageTk.PhotoImage(bgprofilvia_image)
 canvas_profilvia = tk.Canvas(frame_profilvia, width=1100, height=650)
 canvas_profilvia.pack(fill="both", expand=True)
 canvas_profilvia.create_image(0, 0, image=bgprofilvia_image, anchor="nw")
+via_foto = Image.open("via_foto.jpg")
+via_foto = via_foto.resize((200, 250), Image.Resampling.LANCZOS)
+via_foto_tk = ImageTk.PhotoImage(via_foto)
+canvas_profilvia.via_foto_tk = via_foto_tk
+canvas_profilvia.create_image(300, 330, image=via_foto_tk)
 
 #back button page profil via
 btnbackvia_image = Image.open("back_button.png")
