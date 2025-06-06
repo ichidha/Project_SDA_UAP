@@ -19,7 +19,7 @@ frame_profildhn = tk.Frame(root, width=1100, height=650)
 frame_profilvia = tk.Frame(root, width=1100, height=650)
 
 
-for frame in (frame_satu, frame_dua, frame_nama):
+for frame in (frame_satu, frame_dua, frame_nama, frame_profildhn, frame_profilfx, frame_profilmuti, frame_profilvia):
     frame.place(x=0, y=0, width=1100, height=650)
 
 #page awal
