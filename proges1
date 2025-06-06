@@ -100,6 +100,27 @@ btnback_photo = ImageTk.PhotoImage(btnback_image)
 back_button = tk.Button(frame_nama, image=btnback_photo, borderwidth=0, command=lambda: buka_halaman(frame_dua), cursor="hand2")
 canvas_AllName.create_window(895, 575, window=back_button)
 
+#button nur ramadhani
+btnnrd_image = Image.open("Nur Ramadhani.png")
+btnnrd_image = btnnrd_image.resize((230, 60), Image.Resampling.LANCZOS)
+btnnrd_photo = ImageTk.PhotoImage(btnnrd_image)
+nrd_button = tk.Button(frame_nama, image=btnnrd_photo, borderwidth=0, command=lambda: buka_halaman(frame_profildhn), cursor="hand2")
+canvas_AllName.create_window(330, 250, window=nrd_button)
+
+#pagenrd
+bgprofil_image = Image.open("profil_bg.png")
+bgprofil_image = ImageTk.PhotoImage(bgprofil_image)
+canvas_profilnrd = tk.Canvas(frame_profildhn, width=1100, height=650)
+canvas_profilnrd.pack(fill="both", expand=True)
+canvas_profilnrd.create_image(0, 0, image=bgprofil_image, anchor="nw")
+
+#back button page profil nrd
+btnbacknrd_image = Image.open("back_button.png")
+btnbacknrd_image = btnbacknrd_image.resize((131, 41), Image.Resampling.LANCZOS)
+btnbacknrd_photo = ImageTk.PhotoImage(btnbacknrd_image)
+back_button = tk.Button(frame_profildhn, image=btnbacknrd_photo, borderwidth=0, command=lambda: buka_halaman(frame_nama), cursor="hand2")
+canvas_profilnrd.create_window(895, 575, window=back_button)
+
 buka_halaman(frame_satu)
 
 root.mainloop()
