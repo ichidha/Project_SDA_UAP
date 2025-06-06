@@ -39,11 +39,6 @@ canvas_satu.create_text(547, 254, text="PROJECT",font=("Forte", 68, "bold"), fil
 canvas_satu.create_text(548, 253, text="PROJECT",font=("Forte", 68, "bold"), fill="black")
 canvas_satu.create_text(550, 250, text="PROJECT",font=("Forte", 68, "bold"), fill="orange")
 
-#buat garis di page 2 pilihan 
-#canvas_satu.create_text(145, 70, text="____",font=("Forte", 68, "bold"), fill="white")
-#canvas_satu.create_text(145, 85, text="_____",font=("Forte", 68, "bold"), fill="white")
-
-
 btn_image = Image.open("start_button.png")
 btn_image = btn_image.resize((150, 35), Image.Resampling.LANCZOS)
 btn_photo = ImageTk.PhotoImage(btn_image)
