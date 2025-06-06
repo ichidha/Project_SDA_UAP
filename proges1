@@ -142,6 +142,48 @@ btnbackfx_photo = ImageTk.PhotoImage(btnbacknrd_image)
 back_button = tk.Button(frame_profilfx, image=btnbackfx_photo, borderwidth=0, command=lambda: buka_halaman(frame_nama), cursor="hand2")
 canvas_profilfx.create_window(895, 575, window=back_button)
 
+#button via
+btnvia_image = Image.open("Viandra T. Agsatri.png")
+btnvia_image = btnvia_image.resize((230, 60), Image.Resampling.LANCZOS)
+btnvia_photo = ImageTk.PhotoImage(btnvia_image)
+via_button = tk.Button(frame_nama, image=btnvia_photo, borderwidth=0, command=lambda: buka_halaman(frame_profilvia), cursor="hand2")
+canvas_AllName.create_window(330, 370, window=via_button)
+
+#pagevia
+bgprofilvia_image = Image.open("profil_bg.png")
+bgprofilvia_image = ImageTk.PhotoImage(bgprofilvia_image)
+canvas_profilvia = tk.Canvas(frame_profilvia, width=1100, height=650)
+canvas_profilvia.pack(fill="both", expand=True)
+canvas_profilvia.create_image(0, 0, image=bgprofilvia_image, anchor="nw")
+
+#back button page profil via
+btnbackvia_image = Image.open("back_button.png")
+btnbackvia_image = btnbackvia_image.resize((131, 41), Image.Resampling.LANCZOS)
+btnbackvia_photo = ImageTk.PhotoImage(btnbackvia_image)
+back_button = tk.Button(frame_profilvia, image=btnbackvia_photo, borderwidth=0, command=lambda: buka_halaman(frame_nama), cursor="hand2")
+canvas_profilvia.create_window(895, 575, window=back_button)
+
+#button muti
+btnmuti_image = Image.open("Muthia Zhafira.png")
+btnmuti_image = btnmuti_image.resize((230, 60), Image.Resampling.LANCZOS)
+btnmuti_photo = ImageTk.PhotoImage(btnmuti_image)
+muti_button = tk.Button(frame_nama, image=btnmuti_photo, borderwidth=0, command=lambda: buka_halaman(frame_profilmuti), cursor="hand2")
+canvas_AllName.create_window(770, 370, window=muti_button)
+
+#pagemuti
+bgprofilmuti_image = Image.open("profil_bg.png")
+bgprofilmuti_image = ImageTk.PhotoImage(bgprofilmuti_image)
+canvas_profilmutii = tk.Canvas(frame_profilmuti, width=1100, height=650)
+canvas_profilmutii.pack(fill="both", expand=True)
+canvas_profilmutii.create_image(0, 0, image=bgprofilmuti_image, anchor="nw")
+
+#back button page profil muti
+btnbackmuti_image = Image.open("back_button.png")
+btnbackmuti_image = btnbackmuti_image.resize((131, 41), Image.Resampling.LANCZOS)
+btnbackmuti_photo = ImageTk.PhotoImage(btnbackfx_image)
+back_button = tk.Button(frame_profilmuti, image=btnbackmuti_photo, borderwidth=0, command=lambda: buka_halaman(frame_nama), cursor="hand2")
+canvas_profilmutii.create_window(895, 575, window=back_button)
+
 buka_halaman(frame_satu)
 
 root.mainloop()
