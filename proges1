@@ -121,6 +121,27 @@ btnbacknrd_photo = ImageTk.PhotoImage(btnbacknrd_image)
 back_button = tk.Button(frame_profildhn, image=btnbacknrd_photo, borderwidth=0, command=lambda: buka_halaman(frame_nama), cursor="hand2")
 canvas_profilnrd.create_window(895, 575, window=back_button)
 
+#button frans
+btnfx_image = Image.open("FX Novryandika W..png")
+btnfx_image = btnfx_image.resize((230, 60), Image.Resampling.LANCZOS)
+btnfx_photo = ImageTk.PhotoImage(btnfx_image)
+fx_button = tk.Button(frame_nama, image=btnfx_photo, borderwidth=0, command=lambda: buka_halaman(frame_profilfx), cursor="hand2")
+canvas_AllName.create_window(770, 250, window=fx_button)
+
+#pagefrans
+bgprofilfx_image = Image.open("profil_bg.png")
+bgprofilfx_image = ImageTk.PhotoImage(bgprofilfx_image)
+canvas_profilfx = tk.Canvas(frame_profilfx, width=1100, height=650)
+canvas_profilfx.pack(fill="both", expand=True)
+canvas_profilfx.create_image(0, 0, image=bgprofilfx_image, anchor="nw")
+
+#back button page profil frans
+btnbackfx_image = Image.open("back_button.png")
+btnbackfx_image = btnbackfx_image.resize((131, 41), Image.Resampling.LANCZOS)
+btnbackfx_photo = ImageTk.PhotoImage(btnbacknrd_image)
+back_button = tk.Button(frame_profilfx, image=btnbackfx_photo, borderwidth=0, command=lambda: buka_halaman(frame_nama), cursor="hand2")
+canvas_profilfx.create_window(895, 575, window=back_button)
+
 buka_halaman(frame_satu)
 
 root.mainloop()
