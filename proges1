@@ -81,7 +81,7 @@ canvas_dua.create_text(825, 340, text="____",font=("Forte", 68, "bold"), fill="w
 canvas_dua.create_text(825, 325, text="_____",font=("Forte", 68, "bold"), fill="white")
 
 #page our team
-bgAllName_image = Image.open("sunset_bg2.png")
+bgAllName_image = Image.open("sunset_bg3.png")
 bgAllName_image = ImageTk.PhotoImage(bgAllName_image)
 
 canvas_AllName = tk.Canvas(frame_nama, width=1100, height=650)
