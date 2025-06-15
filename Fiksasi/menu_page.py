@@ -11,9 +11,9 @@ class MenuPage(tk.Frame):
 
         for x in [275, 825]:
             for y in [230, 340]:
-                canvas.create_text(x, y, text="____", font=("Forte", 68, "bold"), fill="white")
+                canvas.create_text(x, y, text="_____", font=("Forte", 68, "bold"), fill="white")
             for y in [245 ,325]:
-                canvas.create_text(x, y, text="___", font=("Forte", 68, "bold"), fill="white")
+                canvas.create_text(x, y, text="____", font=("Forte", 68, "bold"), fill="white")
         
         project_btn = tk.Button(self, image=self.controller.btn_project, borderwidth=0,command=lambda: controller.show_frame("ProjectPage"), cursor="hand2")
         canvas.create_window(275, 325, window=project_btn)
