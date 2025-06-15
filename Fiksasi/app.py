@@ -27,6 +27,8 @@ class App(tk.Tk):
         self.bg2_image = ImageTk.PhotoImage(Image.open("assets/sunset_bg2.png"))
         self.bgAllName_image = ImageTk.PhotoImage(Image.open("assets/sunset_bg3.png"))
         self.bgprofil_image = ImageTk.PhotoImage(Image.open("assets/profil_bg.png"))
+        self.bgproject_image = ImageTk.PhotoImage(Image.open("assets/project_bg.png"))
+        
 
         self.btn_start = ImageTk.PhotoImage(Image.open("assets/start_button.png").resize((150, 35)))
         self.btn_exit = ImageTk.PhotoImage(Image.open("assets/exit_button.png").resize((150, 35)))
