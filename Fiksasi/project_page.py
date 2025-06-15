@@ -14,28 +14,60 @@ class ProjectPage(tk.Frame):
 
         canvas = tk.Canvas(self, width=1100, height=650)
         canvas.pack(fill="both", expand=True)
-        canvas.create_rectangle(0, 0, 1100, 650, fill='gray20')
+        canvas.create_image(0, 0, image=self.controller.bgproject_image, anchor="nw")
 
         self.ao_name = tk.Entry(self)
         self.aka_name = tk.Entry(self)
-        canvas.create_window(200, 50, window=self.ao_name)
-        canvas.create_window(900, 50, window=self.aka_name)
+        canvas.create_window(300, 80, window=self.ao_name)
+        canvas.create_window(870, 80, window=self.aka_name)
 
-        self.ao_score_label = tk.Label(self, text="0", font=("Arial", 48), bg="blue", fg="white")
-        self.aka_score_label = tk.Label(self, text="0", font=("Arial", 48), bg="red", fg="white")
-        canvas.create_window(200, 150, window=self.ao_score_label)
-        canvas.create_window(900, 150, window=self.aka_score_label)
+        self.division_entry = tk.Entry(self)
+        canvas.create_window(550, 30, window=self.division_entry)
 
-        tk.Button(self, text="+1", command=lambda: self.update_score('Ao', 1)).place(x=170, y=230)
-        tk.Button(self, text="-1", command=lambda: self.update_score('Ao', -1)).place(x=220, y=230)
-        tk.Button(self, text="+1", command=lambda: self.update_score('Aka', 1)).place(x=870, y=230)
-        tk.Button(self, text="-1", command=lambda: self.update_score('Aka', -1)).place(x=920, y=230)
+        gaya_list = ["Shotokan", "Shito-Ryu", "Goju-Ryu", "Wado-Ryu"]
+        self.ao_style_var = tk.StringVar(value="Pilih Gaya")
+        ao_dropdown = tk.OptionMenu(self, self.ao_style_var, *gaya_list)
+        canvas.create_window(290, 120, window=ao_dropdown)
+        self.aka_style_var = tk.StringVar(value="Pilih Gaya")
+        aka_dropdown = tk.OptionMenu(self, self.aka_style_var, *gaya_list)
+        canvas.create_window(860, 120, window=aka_dropdown)
 
-        tk.Button(self, text="Simpan", command=self.save_scores).place(x=500, y=300)
-        tk.Button(self, text="Reset", command=self.reset_scores).place(x=600, y=300)
+        self.ao_score_label = tk.Label(self, text="0", font=("Arial", 100), bg="blue", fg="white")
+        self.aka_score_label = tk.Label(self, text="0", font=("Arial", 100), bg="red", fg="white")
+        canvas.create_window(135, 300, window=self.ao_score_label)
+        canvas.create_window(685, 300, window=self.aka_score_label)
+
+        tk.Button(self, text="+1", command=lambda: self.update_score('Ao', 1)).place(x=100, y=385)
+        tk.Button(self, text="-1", command=lambda: self.update_score('Ao', -1)).place(x=150, y=385)
+        tk.Button(self, text="+1", command=lambda: self.update_score('Aka', 1)).place(x=650, y=385)
+        tk.Button(self, text="-1", command=lambda: self.update_score('Aka', -1)).place(x=700, y=385)
+
+        tk.Button(self, text="Simpan", command=self.save_scores).place(x=525, y=600)
+        tk.Button(self, text="Reset", command=self.reset_scores).place(x=1000, y=600)
 
         back_btn = tk.Button(self, image=self.controller.btn_back, borderwidth=0,command=lambda: controller.show_frame("MenuPage"), cursor="hand2")
-        back_btn.place(x=895, y=575)
+        back_btn.place(x=950, y=25)
+
+        self.timer_running = False
+        self.ao_time = 0
+        self.aka_time = 0
+
+        self.ao_timer_label = tk.Label(self, text="00:00", font=("Arial", 40), bg="blue", fg="white")
+        self.aka_timer_label = tk.Label(self, text="00:00", font=("Arial", 40), bg="red", fg="white")
+        self.ao_timer_label.place(x=270, y=440)
+        self.aka_timer_label.place(x=840, y=440)
+
+        self.timer_button = tk.Button(self, text="Start", command=self.toggle_timer)
+        canvas.create_window(550, 530, window=self.timer_button)
+
+        tk.Button(self, text="Shikkaku ", bg="blue", fg="white", command=self.shikkaku_ao).place(x=300, y=600)
+        tk.Button(self, text="Kikken ", bg="blue", fg="white", command=self.kikken_ao).place(x=400, y=600)
+        tk.Button(self, text="Shikkaku ", bg="red", fg="white", command=self.shikkaku_aka).place(x=650, y=600)
+        tk.Button(self, text="Kikken ", bg="red", fg="white", command=self.kikken_aka).place(x=750, y=600)
+
+        self.timer_visible = True
+        self.toggle_timer_visibility_button = tk.Button(self, text="Hide Stopwatch", command=self.toggle_timer_visibility)
+        canvas.create_window(100, 615, window=self.toggle_timer_visibility_button)
 
     def update_score(self, side, change):
         if side == 'Ao':
@@ -48,8 +80,10 @@ class ProjectPage(tk.Frame):
     def save_scores(self):
         ao = self.ao_name.get()
         aka = self.aka_name.get()
-        if not ao or not aka:
-            messagebox.showwarning("Input Kosong", "Nama harus diisi!")
+        division = self.division_entry.get()
+
+        if not ao or not aka or not division:
+            messagebox.showwarning("Input Kosong", "Nama dan Divisi harus diisi!")
             return
 
         data = []
@@ -68,8 +102,8 @@ class ProjectPage(tk.Frame):
                 updated = True
 
         if not updated:
-            data.append([ao, 'Ao', self.ao_score])
-            data.append([aka, 'Aka', self.aka_score])
+            data.append([ao, 'Ao', self.ao_score, self.ao_style_var.get(), division])
+            data.append([aka, 'Aka', self.aka_score, self.aka_style_var.get(), division])
 
         with open(self.csv_file, 'w', newline='') as file:
             writer = csv.writer(file)
@@ -84,4 +118,77 @@ class ProjectPage(tk.Frame):
         self.aka_score_label.config(text='0')
         self.ao_name.delete(0, tk.END)
         self.aka_name.delete(0, tk.END)
-        messagebox.showinfo("Reset", "Skor berhasil direset.")
+        self.division_entry.delete(0, tk.END)
+        self.timer_running = False
+        self.ao_time = 0
+        self.aka_time = 0
+        self.ao_timer_label.config(text="00:00")
+        self.aka_timer_label.config(text="00:00")
+        self.timer_button.config(text="Start")
+        messagebox.showinfo("Reset", "berhasil direset.")
+
+    def toggle_timer(self):
+        if not self.timer_running:
+            self.timer_running = True
+            self.timer_button.config(text="Stop")
+            self.update_timers()
+        else:
+            self.timer_running = False
+            self.timer_button.config(text="Start")
+            self.ao_time = 0
+            self.aka_time = 0
+            self.ao_timer_label.config(text="00:00")
+            self.aka_timer_label.config(text="00:00")
+
+    def update_timers(self):
+        if self.timer_running:
+            self.ao_time += 1
+            self.aka_time += 1
+            ao_minutes, ao_seconds = divmod(self.ao_time, 60)
+            aka_minutes, aka_seconds = divmod(self.aka_time, 60)
+            self.ao_timer_label.config(text=f"{ao_minutes:02d}:{ao_seconds:02d}")
+            self.aka_timer_label.config(text=f"{aka_minutes:02d}:{aka_seconds:02d}")
+            self.after(1000, self.update_timers)
+
+    def shikkaku_ao(self):
+        confirm = messagebox.askyesno("Konfirmasi", "Apakah Ao (biru) didiskualifikasi (Shikkaku)?")
+        if confirm:
+            self.aka_score = 8
+            self.ao_score = 0
+            self.aka_score_label.config(text='8')
+            self.ao_score_label.config(text='0')
+
+    def kikken_ao(self):
+        confirm = messagebox.askyesno("Konfirmasi", "Apakah Ao (biru) mengundurkan diri (Kikken)?")
+        if confirm:
+            self.aka_score = 8
+            self.ao_score = 0
+            self.aka_score_label.config(text='8')
+            self.ao_score_label.config(text='0')
+
+    def shikkaku_aka(self):
+        confirm = messagebox.askyesno("Konfirmasi", "Apakah Aka (merah) didiskualifikasi (Shikkaku)?")
+        if confirm:
+            self.ao_score = 8
+            self.aka_score = 0
+            self.ao_score_label.config(text='8')
+            self.aka_score_label.config(text='0')
+
+    def kikken_aka(self):
+        confirm = messagebox.askyesno("Konfirmasi", "Apakah Aka (merah) mengundurkan diri (Kikken)?")
+        if confirm:
+            self.ao_score = 8
+            self.aka_score = 0
+            self.ao_score_label.config(text='8')
+            self.aka_score_label.config(text='0')
+
+    def toggle_timer_visibility(self):
+        if self.timer_visible:
+            self.ao_timer_label.place_forget()
+            self.aka_timer_label.place_forget()
+            self.toggle_timer_visibility_button.config(text="Show Stopwatch")
+        else:
+            self.ao_timer_label.place(x=270, y=440)
+            self.aka_timer_label.place(x=840, y=440)
+            self.toggle_timer_visibility_button.config(text="Hide Stopwatch")
+        self.timer_visible = not self.timer_visible
